@@ -52,6 +52,7 @@ class RacingCarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"2:true", "3:true", "4:false"}, delimiter = ':')
+    @DisplayName("우승자 판별")
     void car_winner(int winnerScore, boolean expected) {
         // given
         RacingCar racingCar = new RacingCar();
