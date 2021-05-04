@@ -18,6 +18,7 @@ class ParticipantTest {
 
         // then
         assertThat(participant.name()).isEqualTo("pobi");
+        assertThat(participant).isEqualTo(Participant.from("pobi"));
     }
 
     @ParameterizedTest
