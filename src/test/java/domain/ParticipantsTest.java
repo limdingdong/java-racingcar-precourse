@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class ParticipantsTest {
@@ -26,6 +30,19 @@ class ParticipantsTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Participants.from("lds,lds,pobi"))
                 .withMessageMatching("중복된 이름이 존재합니다. 참가자명을 확인해주세요.");
+    }
+
+    @Test
+    @DisplayName("참가자명 목록 조회")
+    void names() {
+        // given
+        Participants participants = Participants.from("aaa,bbb,ccc");
+
+        // when
+        List<String> names = participants.names();
+
+        // then
+        assertThat(names).isEqualTo(Arrays.asList("aaa", "bbb", "ccc"));
     }
 
 }
