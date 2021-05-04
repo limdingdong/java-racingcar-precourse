@@ -1,6 +1,5 @@
 package domain;
 
-import domain.dto.RacingResult;
 import domain.dto.RoundResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +36,7 @@ class CarRacingTest {
         RacingResult racingResult = carRacing.executeRacing(5);
 
         // then
-        assertThat(racingResult.getRoundResults().size()).isEqualTo(5);
+        assertThat(racingResult.roundResults().size()).isEqualTo(5);
     }
 
     @Test
@@ -51,7 +50,7 @@ class CarRacingTest {
         RacingResult racingResult = carRacing.executeRacing(5);
 
         // then
-        for (RoundResult roundResult : racingResult.getRoundResults()) {
+        for (RoundResult roundResult : racingResult.roundResults()) {
             assertThat(roundResult.getRoundScores().size()).isEqualTo(3);
         }
     }

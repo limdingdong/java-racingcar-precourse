@@ -1,6 +1,5 @@
 package domain;
 
-import domain.dto.RacingResult;
 import domain.dto.RoundResult;
 import domain.dto.RoundScore;
 
@@ -39,7 +38,7 @@ public class CarRacing {
         for (int i = FIRST_INDEX; i < roundCount; i++) {
             roundResults.add(executeRound());
         }
-        return new RacingResult(roundResults, chooseWinners().names());
+        return new RacingResult(roundResults, chooseWinners());
     }
 
     private void validateRoundCount(int roundCount) {
