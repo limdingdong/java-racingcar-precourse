@@ -2,7 +2,7 @@ package service;
 
 import domain.CarRacing;
 import domain.Participants;
-import domain.dto.RacingResult;
+import domain.RacingResult;
 
 public class CarRacingService {
 

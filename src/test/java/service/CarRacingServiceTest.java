@@ -1,6 +1,6 @@
 package service;
 
-import domain.dto.RacingResult;
+import domain.RacingResult;
 import domain.dto.RoundResult;
 import domain.dto.RoundScore;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +21,7 @@ class CarRacingServiceTest {
         RacingResult racingResult = service.executeCarRacing("aaa,bbb,ccc", 5);
 
         // then
-        assertThat(racingResult.getRoundResults().size()).isEqualTo(5);
+        assertThat(racingResult.roundResults().size()).isEqualTo(5);
     }
 
     @Test
@@ -31,7 +31,7 @@ class CarRacingServiceTest {
         RacingResult racingResult = service.executeCarRacing("aaa,bbb,ccc", 5);
 
         // then
-        for (RoundResult roundResult : racingResult.getRoundResults()) {
+        for (RoundResult roundResult : racingResult.roundResults()) {
             assertThat(roundResult.getRoundScores().size()).isEqualTo(3);
         }
     }
@@ -45,7 +45,7 @@ class CarRacingServiceTest {
 
         // when
         RoundResult finalRound = null;
-        for (RoundResult roundResult : racingResult.getRoundResults()) {
+        for (RoundResult roundResult : racingResult.roundResults()) {
             finalRound = roundResult;
         }
 
