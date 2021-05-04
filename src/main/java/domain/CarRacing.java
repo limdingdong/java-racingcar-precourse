@@ -1,6 +1,5 @@
 package domain;
 
-import common.utils.StringUtils;
 import domain.dto.RacingResult;
 import domain.dto.RoundResult;
 import domain.dto.RoundScore;
@@ -9,7 +8,6 @@ import java.util.*;
 
 public class CarRacing {
 
-    private static final String NAME_DELIMITER = ",";
     private static final int FIRST_INDEX = 0;
     private static final int MIN_ROUND_COUNT = 1;
 
@@ -19,31 +17,16 @@ public class CarRacing {
         this.racing = racing;
     }
 
-    public static CarRacing registerParticipants(String participantNames) {
-        validateNames(participantNames);
-        String[] participantNamesArray = participantNames.split(NAME_DELIMITER);
-        return new CarRacing(registerParticipants(participantNamesArray));
+    public static CarRacing from(Participants participants) {
+        return new CarRacing(registerParticipants(participants));
     }
 
-    private static void validateNames(String participantNames) {
-        if (StringUtils.isBlank(participantNames)) {
-            throw new IllegalArgumentException("참가자명을 입력해 주세요.");
-        }
-    }
-
-    private static Map<Participant, RacingCar> registerParticipants(String[] participantNamesArray) {
+    private static Map<Participant, RacingCar> registerParticipants(Participants participants) {
         Map<Participant, RacingCar> racingCarMap = new LinkedHashMap<>();
-        for (String participantName : participantNamesArray) {
-            racingCarMap.put(Participant.from(participantName), new RacingCar());
+        for (Participant Participant : participants) {
+            racingCarMap.put(Participant, new RacingCar());
         }
-        validateDuplicate(participantNamesArray, racingCarMap);
         return racingCarMap;
-    }
-
-    private static void validateDuplicate(String[] participantNamesArray, Map<Participant, RacingCar> racingCarMap) {
-        if (participantNamesArray.length > racingCarMap.size()) {
-            throw new IllegalArgumentException("중복된 이름이 존재합니다. 참가자명을 확인해주세요.");
-        }
     }
 
     public RacingCar racingCar(Participant participant) {
